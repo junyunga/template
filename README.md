@@ -1,6 +1,6 @@
 # template
 
-> design
+> design!
 
 ## Build Setup
 
