@@ -2,4 +2,6 @@
 /config/
 /dist/
 /*.js
+src/*.js
+src/*.vue
 /test/unit/coverage/
