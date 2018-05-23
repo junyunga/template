@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-{{books}}
+        <router-view></router-view>
     </div>
 </template>
 
@@ -19,9 +19,9 @@
     let db = app.database();
     let booksRef = db.ref('db');
     booksRef.on("value", function(snapshot) {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
     }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+        // console.log("The read failed: " + errorObject.code);
     });
     export default {
         name: 'App',
