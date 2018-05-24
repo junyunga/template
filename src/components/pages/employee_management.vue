@@ -34,7 +34,6 @@
                     { text: 'Carbs (g)', value: 'carbs' },
                     { text: 'Protein (g)', value: 'protein' },
                     { text: 'Iron (%)', value: 'iron' },
-                    
                 ],
                 desserts: [
                     {
