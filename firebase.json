@@ -1,6 +1,6 @@
 {
   "database": {
-    "rules": "database.rulse.json"
+    "rules": "database.rules.json"
   },
   "functions": {
     "predeploy": [
