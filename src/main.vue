@@ -9,7 +9,9 @@
             <vue_left_side></vue_left_side>
 
         </v-navigation-drawer>
-        <v-toolbar app>
+        <v-toolbar app
+                   :style="{'padding-left': 200 + 'px'}"
+        >
             <vue_header></vue_header>
         </v-toolbar>
         <v-content>
@@ -35,6 +37,7 @@
     #leftSideContainer {
         width: 180px !important;
     }
+
     .content {
         padding: 0px 0px 0px 180px !important;
     }

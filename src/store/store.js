@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Mutations from './mutations'
-import Actions from './actions'
+import mutations from './mutations'
+import actions from './actions'
 
 
 Vue.use(Vuex)
 /* eslint-disable */
-export const store = new Vuex.Store({
+const store = new Vuex.Store({
     state: {
-        counter: 0
+        preLoader: true
     },
-    Mutations,
-    Actions
+    mutations,
+    actions
 });
+export default store

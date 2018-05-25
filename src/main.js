@@ -6,7 +6,7 @@ import VueBlu from 'vue-blu'
 import 'vue-blu/dist/css/vue-blu.min.css'
 import App from './App'
 import router from './router'
-import {store} from './store/store'
+import store from './store/store'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
@@ -15,6 +15,14 @@ Vue.config.productionTip = false
 Vue.use(Vuetify);
 Vue.use(VueFire);
 Vue.use(VueBlu);
+router.beforeEach((to, from, next) => {
+    store.commit("routeChange", {"loader": "start"});
+    next();
+});
+router.afterEach((to,from) => {
+   document.title = to.meta.title;
+   store.commit("routeChange", {"loader": "end"})
+});
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

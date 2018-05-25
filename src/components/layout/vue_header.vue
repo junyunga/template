@@ -1,10 +1,16 @@
 <template>
-    <div>
-        head
+    <div row>
+
     </div>
 </template>
 <script>
     export default {
-        name: 'vue_header'
+        name: 'vue_header',
+        data () {
+            return {
+            }
+        },
+        mounted: function() {
+        }
     }
 </script>

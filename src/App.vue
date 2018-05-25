@@ -1,45 +1,23 @@
 <template>
     <div id="app">
+        <pre-loader v-show="this.$store.state.preLoader"></pre-loader>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import Firebase from 'firebase';
-    // Initialize Firebase
-    let config = {
-        apiKey: "AIzaSyCqCcTRwgvbanOdIZWQajDGdbsOkwO0Sww",
-        authDomain: "template-4f9fb.firebaseapp.com",
-        databaseURL: "https://template-4f9fb.firebaseio.com",
-        projectId: "template-4f9fb",
-        storageBucket: "template-4f9fb.appspot.com",
-        messagingSenderId: "122884676533"
-    };
-    let app = Firebase.initializeApp(config);
-    let db = app.database();
-    let booksRef = db.ref('db');
-    booksRef.on("value", function(snapshot) {
-        // console.log(snapshot.val());
-    }, function (errorObject) {
-        // console.log("The read failed: " + errorObject.code);
-    });
+
+    import preLoader from './components/layout/pre_loader';
+
     export default {
         name: 'App',
-        firebase: function() {
-            return {
-                books: booksRef
-            }
+        components: {
+            'pre-loader': preLoader
         },
-        data () {
-            return {
-                newBook: {
-                    title: '11',
-                    author: '11',
-                    url : 'http://'
-                }
-            }
+        data() {
+            return {}
         },
-        mounted: function() {
+        mounted: function () {
         }
     }
 </script>

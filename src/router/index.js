@@ -12,17 +12,26 @@ export default new Router({
             path: '/',
             name: 'MainVue',
             component: MainVue,
+            meta: {
+                title: '메인'
+            },
 
             children: [
                 {
                     path: '',
                     name: 'index',
-                    component: Index
+                    component: Index,
+                    meta: {
+                        title: '메인2'
+                    }
                 },
                 {
                     path: '/M0001',
                     name: 'M0001',
-                    component: EmployeeManagement
+                    component: EmployeeManagement,
+                    meta: {
+                        title: '사원관리'
+                    }
                 }
             ]
         }

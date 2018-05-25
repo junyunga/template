@@ -2,13 +2,14 @@
     <v-layout row wrap id="leftSide">
         <v-list class="left-side-list">
             <v-list-tile class="left-side-list-title">
-                <v-list-tile-title class="title">(주)무른모</v-list-tile-title>
+                <v-list-tile-title class="title">
+                    <router-link to="/">(주)무른모</router-link>
+                </v-list-tile-title>
             </v-list-tile>
             <v-divider></v-divider>
         </v-list>
         <v-menu
                 transition="scale-transition"
-                :close-on-content-click="false"
                 offset-x
                 v-for="i in 5" :key="i"
         >
@@ -28,7 +29,7 @@
                         </v-list-tile>
                     </v-list>
                     <v-divider></v-divider>
-                    <div                      v-for="i in 2" :key="i"
+                    <div v-for="i in 2" :key="i"
                     >
                         <v-btn to="/M0001">사원관리</v-btn>
                     </div>
