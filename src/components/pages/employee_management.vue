@@ -1,34 +1,36 @@
 <template>
     <v-data-table
             :headers="headers"
-            :items="desserts"
+            :items="this.$store.state.user"
             :loading="loading"
             :pagination.sync="pagination"
             v-model="selected"
+            :rows-per-page-items="[10,15,25,{text:'All',value:-1}]"
             select-all
             class="elevation-1"
     >
         <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
         <template slot="items" slot-scope="props">
-            <td>
-                <v-checkbox
-                        v-model="props.selected"
-                        primary
-                        hide-details
-                ></v-checkbox>
-            </td>
-            <td class="text-xs-center">{{ props.item.id }}</td>
-            <td class="text-xs-center">{{ props.item.in_date }}</td>
-            <td class="text-xs-center">{{ props.item.mail }}</td>
-            <td class="text-xs-center">{{ props.item.name }}</td>
-            <td class="text-xs-center">{{ props.item.phone }}</td>
+            <tr :active="props.selected" @click="props.selected = !props.selected">
+                <td>
+                    <v-checkbox
+                            v-model="props.selected"
+                            primary
+                            hide-details
+                    ></v-checkbox>
+                </td>
+                <td class="text-xs-center">{{ props.item.name }}</td>
+                <td class="text-xs-center">{{ props.item.part_level }}</td>
+                <td class="text-xs-center">{{ props.item.id }}</td>
+                <td class="text-xs-center">{{ props.item.hp_no }}</td>
+                <td class="text-xs-center">{{ props.item.home_addr }}</td>
+            </tr>
         </template>
         <template slot="no-data">
             <v-alert :value="true" color="error" icon="warning">
                 데이터 없음
             </v-alert>
         </template>
-
     </v-data-table>
 </template>
 <script>
@@ -61,47 +63,34 @@
             return {
                 pagination: {},
                 loading: true,
-                headers: [],
-                desserts: [],
+                headers: [
+                    {text: '이름', value: 'name'},
+                    {text: '직책', value: 'part_level'},
+                    {text: 'id', value: 'id'},
+                    {text: '휴대폰', value: 'hp_no'},
+                    {text: '주소', value: 'address'},
+                ],
+                desserts: this.$store.state.user,
                 selected: []
             }
         },
         watch: {
             pagination: {
                 handler() {
-                    this.test()
+                    this.goPage()
                 },
                 deep: true
             }
         },
         mounted() {
             let $this = this;
-            employee_managements.on("value", function (snapshot) {
-                _.forEach(snapshot.val().title, function (value, key) {
-                    $this.headers.push({
-                        align: 'center',
-
-                        text: value,
-                        value: key
-                    });
-                });
-
-                _.forEach(snapshot.val().data, function (info, key) {
-                    $this.desserts.push({
-                        value: false,
-                        mail: info.mail,
-                        id: info.id,
-                        in_date: info.in_date,
-                        name: info.name,
-                        phone: info.phone
-                    });
-                });
-            }, function (errorObject) {
-                console.log("The read failed: " + errorObject.code);
-            });
+            $this.$nextTick(() => {
+                //사원 정보 GET
+                $this.$store.dispatch('getApi', {'request': 'user'});
+            })
         },
         methods: {
-            test() {
+            goPage() {
                 this.loading = true;
                 setTimeout(() => {
                     this.loading = false;

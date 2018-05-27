@@ -10,11 +10,16 @@ import store from './store/store'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+// import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.use(Vuetify);
 Vue.use(VueFire);
 Vue.use(VueBlu);
+// axios.defaults.baseURL = 'http://devjun.soonsoft.co.kr/src/vue_test_api.php';
+// Vue.prototype.$http = axios;
+
+// Vue.use(axios);
 router.beforeEach((to, from, next) => {
     store.commit("routeChange", {"loader": "start"});
     next();

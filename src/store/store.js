@@ -8,7 +8,8 @@ Vue.use(Vuex)
 /* eslint-disable */
 const store = new Vuex.Store({
     state: {
-        preLoader: true
+        preLoader: true,
+        user: []
     },
     mutations,
     actions
