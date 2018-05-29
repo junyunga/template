@@ -27,7 +27,17 @@ let mutations = {
         }
     },
     postApi(state, payLoad) {
+        if (payLoad.request === 'insert') {
+            axios.post(`${api}`, {
+                params: {
+                    mode: payLoad.request,
+                    data: payLoad.data
+                }
+            })
+                .then(response => {
 
+                })
+        }
     },
     putApi(state, payLoad) {
 
